@@ -13,14 +13,16 @@ public class Pilha {
     public Pilha(int capacidade, int topo){
         this.capacidade = capacidade;
         this.topo = topo;
+        this.dados = new int[capacidade];
     }
     
     public void Insere(){
         //Inserir novo dado na pilha 
+        System.out.println("Digite o numero a ser adicionado:");
         int dado = entrada.nextInt();
         entrada.nextLine();
         if(this.topo != this.capacidade){
-            this.dados[topo] = dado;
+            this.dados[capacidade] = dado;
             this.topo++;
         }
         
@@ -62,18 +64,8 @@ public class Pilha {
     
     public void menuPilha(){
         
-        System.out.println("==================Menu==================");
-        System.out.println("Digite 1 para Inserir algo na pilha");
-        System.out.println("Digite 2 para verificar se a pilha está cheia");
-        System.out.println("Digite 3 para verificar se a pilha está vazia");
-        System.out.println("Digite 4 para Remover um elemento da pilha");
-        System.out.println("Digite 5 para Imprimir todo o conteúdo da pilha");
-        System.out.println("Digite 9 para sair");
-        System.out.println("========================================");
-
-        int escolha = entrada.nextInt();
-        entrada.nextLine();
-            
+        int escolha = 0;
+                    
         while(escolha != 9){
             System.out.println("==================Menu==================");
             System.out.println("Digite 1 para Inserir algo na pilha");
