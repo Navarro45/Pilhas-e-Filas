@@ -63,7 +63,7 @@ public class Pilha {
             System.out.println("A pilha está vazia.");
         } else {
             for (int i = 0; i <= this.topo; i++) {
-                System.out.println(this.dados[i]);
+                System.out.println(i + ":" + this.dados[i]);
             }
         }
     }

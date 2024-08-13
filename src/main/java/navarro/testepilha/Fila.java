@@ -1,53 +1,67 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package navarro.testepilha;
 
 import java.util.Scanner;
 
-/**
- *
- * @author phvna
- */
 public class Fila {
-   
+
     public int topo; // Ao inicializar, o topo deve ser -1, indicando que a fila está vazia.
     public int capacidade;
     public int primeiro;
     public int ultimo;  
     public int[] dados;
     public Scanner entrada = new Scanner(System.in);
-    
+
     public Fila(int capacidade){
-        
+
         this.capacidade = capacidade;
         this.topo = -1; 
+        this.primeiro = 0;
+        this.ultimo = 0;
         this.dados = new int[capacidade];
     }
-    
+
     public void Insere(){
         // Inserir novo dado na fila
-        if(this.topo < this.capacidade - 1){
+        if(this.Cheia() != true){
             System.out.println("Digite o número a ser adicionado:");
             int dado = entrada.nextInt();
             entrada.nextLine();
-            this.topo++;
-            this.dados[topo] = dado;
-        } else {
+
+            if(primeiro != 0){
+                this.primeiro = this.ultimo;
+                this.ultimo = dado;
+                this.topo++;
+                this.dados[topo] = dado;
+                
+                //this.capacidade++;
+            }else{
+                this.ultimo = dado;
+                this.topo++;
+                this.dados[topo] = dado;
+                
+            }
+
+
+
+            
+        } else if(this.Cheia() != false) {
             System.out.println("A fila está cheia. Não é possível adicionar mais elementos.");
+        }else{
+
         }
     }
-    
-    public void Cheia(){
+
+    public boolean Cheia(){
         // Verificar se a fila está cheia
         if(this.topo == this.capacidade - 1){
             System.out.println("A fila está cheia");
+            return true;
         } else {
             System.out.println("A fila ainda tem espaço");
+            return false;
         }
     }
-    
+
     public void Vazia(){
         if(this.topo == -1){
             System.out.println("A fila está vazia");
@@ -55,7 +69,7 @@ public class Fila {
             System.out.println("A fila não está vazia");
         }
     }
-    
+
     public int Remove(){
         // Método de retirada de dados
         if(this.topo != -1){
@@ -67,7 +81,7 @@ public class Fila {
             return -1; // Retorna um valor de erro, indicando que não há elementos a remover.
         }
     }
-    
+
     public void Imprime(){
         // Imprimir os dados da fila
         if(this.topo == -1){
@@ -78,10 +92,10 @@ public class Fila {
             }
         }
     }
-    
+
     public void menufila(){
         int escolha = 0;
-                    
+
         while(escolha != 9){
             System.out.println("================== Menu ==================");
             System.out.println("Digite 1 para Inserir algo na fila");
