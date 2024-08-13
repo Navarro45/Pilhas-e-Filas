@@ -22,8 +22,9 @@ public class Pilha {
         int dado = entrada.nextInt();
         entrada.nextLine();
         if(this.topo != this.capacidade){
-            this.dados[capacidade] = dado;
             this.topo++;
+            this.dados[topo] = dado;
+            
         }
         
     }
@@ -57,9 +58,11 @@ public class Pilha {
       }
     }
     
-    public int[] Imprime(){
-        //Imprimir os dados da pilha 
-        return this.dados;
+    public void Imprime(){
+        //Imprimir os dados da pilha
+        for (int i = 0; i < dados.length; i++) {
+            System.out.println(dados[i]);
+        }
     }
     
     public void menuPilha(){
