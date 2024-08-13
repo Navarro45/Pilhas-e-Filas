@@ -12,10 +12,8 @@ public class TestePilha {
         System.out.println("Digite o tamanho da pilha:");
         int capacidade = entrada.nextInt();
         entrada.nextLine();
-
-        int topo = -1;
         
-        Pilha p = new Pilha(capacidade, topo);
+        Pilha p = new Pilha(capacidade);
         
         p.menuPilha();
                 
