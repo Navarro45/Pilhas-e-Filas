@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 public class Fila {
 
-    public int topo; // Ao inicializar, o topo deve ser -1, indicando que a fila está vazia.
     public int capacidade;
     public int primeiro;
     public int ultimo;  
@@ -13,10 +12,9 @@ public class Fila {
 
     public Fila(int capacidade){
 
-        this.capacidade = capacidade;
-        this.topo = -1; 
-        this.primeiro = 0;
-        this.ultimo = 0;
+        this.capacidade = capacidade; 
+        this.primeiro = -1;
+        this.ultimo = -1;
         this.dados = new int[capacidade];
     }
 
@@ -26,18 +24,17 @@ public class Fila {
             System.out.println("Digite o número a ser adicionado:");
             int dado = entrada.nextInt();
             entrada.nextLine();
-
-            if(primeiro != 0){
-                this.primeiro = this.ultimo;
-                this.ultimo = dado;
-                this.topo++;
-                this.dados[topo] = dado;
-                
-                //this.capacidade++;
+            
+            if(primeiro != -1){
+            
+                this.ultimo++;
+                this.dados[ultimo] = dado;
+            
             }else{
-                this.ultimo = dado;
-                this.topo++;
-                this.dados[topo] = dado;
+                
+                this.ultimo ++;
+                this.primeiro ++;
+                this.dados[ultimo] = dado;
                 
             }
 
@@ -53,7 +50,7 @@ public class Fila {
 
     public boolean Cheia(){
         // Verificar se a fila está cheia
-        if(this.topo == this.capacidade - 1){
+        if(this.ultimo == this.capacidade - 1){
             System.out.println("A fila está cheia");
             return true;
         } else {
@@ -63,7 +60,7 @@ public class Fila {
     }
 
     public void Vazia(){
-        if(this.topo == -1){
+        if(this.ultimo == -1){
             System.out.println("A fila está vazia");
         } else {
             System.out.println("A fila não está vazia");
@@ -72,22 +69,32 @@ public class Fila {
 
     public int Remove(){
         // Método de retirada de dados
-        if(this.topo != -1){
-            int dadoRemovido = this.dados[topo];
-            this.topo--;
+        if(this.ultimo != -1){
+            int dadoRemovido = this.dados[primeiro];
+
+            for (int i = 0; i < this.ultimo; i++) {
+                this.dados[i] = this.dados[i + 1];
+            }
+
+            this.ultimo--;
+            
+            if(this.ultimo == -1) {
+                this.primeiro = -1;
+            }
+
             return dadoRemovido;
         } else {
             System.out.println("A fila está vazia. Não há elementos para remover.");
-            return -1; // Retorna um valor de erro, indicando que não há elementos a remover.
+            return -1; 
         }
     }
 
     public void Imprime(){
         // Imprimir os dados da fila
-        if(this.topo == -1){
+        if(this.ultimo == -1){
             System.out.println("A fila está vazia.");
         } else {
-            for (int i = 0; i <= this.topo; i++) {
+            for (int i = 0; i <= this.ultimo; i++) {
                 System.out.println(i + ":" + this.dados[i]);
             }
         }
